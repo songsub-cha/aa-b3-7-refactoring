@@ -38,13 +38,21 @@ public class VRUI {
 		if (foundCustomer == null) {
 			System.out.println("No customer found");
 		} else {
-			System.out.println("Name: " + foundCustomer.getName() +
-					"\tRentals: " + foundCustomer.getRentals().size());
-			for (Rental rental : foundCustomer.getRentals()) {
-				System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
-				System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode());
-			}
+			printCustomerRentals(foundCustomer);
 		}
+	}
+
+	private void printCustomerRentals(Customer customer) {
+		System.out.println("Name: " + customer.getName() +
+				"\tRentals: " + customer.getRentals().size());
+		for (Rental rental : customer.getRentals()) {
+			System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ");
+			System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode());
+		}
+	}
+
+	private void printVideo(Video video) {
+		System.out.println("Price code: " + video.getPriceCode() +"\tTitle: " + video.getTitle()) ;
 	}
 
 	public void returnVideo() {
@@ -77,9 +85,8 @@ public class VRUI {
 
 	public void listVideos() {
 		System.out.println("List of videos");
-
 		for (Video video: vrLogic.getVideos()) {
-			System.out.println("Price code: " + video.getPriceCode() +"\tTitle: " + video.getTitle()) ;
+			printVideo(video);
 		}
 		System.out.println("End of list");
 	}
@@ -87,12 +94,7 @@ public class VRUI {
 	public void listCustomers() {
 		System.out.println("List of customers");
 		for ( Customer customer: vrLogic.getCustomers()) {
-			System.out.println("Name: " + customer.getName() +
-					"\tRentals: " + customer.getRentals().size()) ;
-			for ( Rental rental: customer.getRentals() ) {
-				System.out.print("\tTitle: " + rental.getVideo().getTitle() + " ") ;
-				System.out.print("\tPrice Code: " + rental.getVideo().getPriceCode()) ;
-			}
+			printCustomerRentals(customer);
 		}
 		System.out.println("End of list");
 	}
