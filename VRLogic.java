@@ -64,8 +64,7 @@ public class VRLogic {// Seperate Domain from Presentation - UI / Logic (Custome
         Customer foundCustomer = findCustomer(customerName);
         if (foundCustomer == null) return null;
 
-        List<Rental> rentals = new ArrayList<Rental>();
-        foundCustomer.setRentals(rentals);
+        foundCustomer.clearRentals();
 
         return foundCustomer;
     }
@@ -91,9 +90,6 @@ public class VRLogic {// Seperate Domain from Presentation - UI / Logic (Custome
         Rental rental = new Rental(foundVideo);
         foundVideo.setRented(true);
 
-        // encapsulate collection
-        List<Rental> customerRentals = foundCustomer.getRentals();
-        customerRentals.add(rental);
-        foundCustomer.setRentals(customerRentals);
+        foundCustomer.addRental(rental);
     }
 }
