@@ -54,14 +54,12 @@ public class Rental {
 	}
 
 	protected int getDaysRented() {
-		int daysRented ;
-		if (getStatus() == RentalState.RETURNED) { // returned Video
-			long diff = returnDate.getTime() - rentDate.getTime();
-			daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
-		} else { // not yet returned
-			long diff = new Date().getTime() - rentDate.getTime();
-			daysRented = (int) (diff / (1000 * 60 * 60 * 24)) + 1;
+		long diff = 0;
+		if (getStatus() == RentalState.RETURNED) {
+			diff = returnDate.getTime() - rentDate.getTime();
+		} else {
+			diff = new Date().getTime() - rentDate.getTime();
 		}
-		return daysRented;
+		return (int) (diff / (1000 * 60 * 60 * 24)) + 1;
 	}
 }
